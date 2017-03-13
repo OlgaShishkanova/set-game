@@ -1,1 +1,2 @@
 print("puka")
+print("puka-nyaka")
