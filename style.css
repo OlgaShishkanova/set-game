@@ -153,7 +153,23 @@ img {
 .main-add-3 {
   width: 20%; }
 
-.main-card {
+.card {
+  margin: 20px;
+  position: relative;
+  cursor: pointer; }
+
+.card-img {
   width: 100px;
-  height: auto;
-  margin: 20px; }
+  height: 160px;
+  user-select: none; }
+
+.card-hover::after {
+  content: '';
+  position: absolute;
+  border-radius: 10px;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 160px;
+  background: rgba(197, 204, 207, 0.3);
+  cursor: pointer; }
