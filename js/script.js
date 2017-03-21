@@ -1,10 +1,11 @@
 /**
  * Created by Olya on 11.02.2017.
  */
-var arr = [];
-var myArr = [];
+var deckArr = [];
+var packArr = [];
+var setArr= [];
 var numbers = [1,2,3];
-var myForms = ['diamond', 'oval', 'worm'];
+var forms = ['diamond', 'oval', 'worm'];
 var colors = ['red', 'green', 'violet'];
 var paints = ['empty', 'painted', 'strip'];
 
@@ -20,8 +21,8 @@ var paints = ['empty', 'painted', 'strip'];
             for (var f = 0; f < paints.length; f++) {
 
 
-                for (var j = 0; j < myForms.length; j++) {
-                    myArr.push(getCard(Id, numbers[i], myForms[j], colors[l], paints[f]));
+                for (var j = 0; j < forms.length; j++) {
+                    packArr.push(getCard(Id, numbers[i], forms[j], colors[l], paints[f]));
                     Id++;
                 }
             }
@@ -36,7 +37,8 @@ var paints = ['empty', 'painted', 'strip'];
         cardSelect(".main-12");
     }
 
-    $('.buttons-more').one('click', function () {
+    $('.buttons-more').on('click', function () {
+        if(deckArr.length==15) return;
         for(var a=0;a<3;a++) {
             cardSelect(".main-add-3");
         }
@@ -63,27 +65,85 @@ function getCard (id, number, myForm, color, paint) {
     return cardItself;
 }
 function getByValueOnTable(id) {
-    for (var i=0; i<arr.length; i++) {
 
-        if (arr[i].id == id) return arr[i];
+    var newarr = deckArr.filter(function(x) {
+        return x.id == id;
+    });
+    return newarr[0];
+
+    // for (var i=0; i<deckArr.length; i++) {
+    //
+    //     if (deckArr[i].id == id) return deckArr[i];
+    // }
+}
+function deleteFromArr(card, array, number) {
+    for (var i=0; i<array.length; i++) {
+
+        if (array[i].id == card.id) array.splice(i,number);
     }
 }
+
 function cardSelect(selector) {
-    var rand = Math.floor(Math.random() * myArr.length);
-    $(selector).append(myArr[rand].name);
-    var card = myArr[rand];
-    arr.push(card);
-    myArr.splice(rand,1);
+    var rand = Math.floor(Math.random() * packArr.length);
+    $(selector).append(packArr[rand].name);
+    var card = packArr[rand];
+    deckArr.push(card);
+    packArr.splice(rand,1);
 }
 function getFocus(elem) {
-    $(elem).toggleClass('card-hover');
-    var g = getByValueOnTable(elem.id);
-    var h =7;
+    if($(elem).hasClass('card-hover')){
+        $(elem).removeClass('card-hover');
+        var card = getByValueOnTable(elem.id);
 
-    var elements = document.getElementsByClassName('card-hover');
+        deleteFromArr(card,setArr,1);
+    }else{
+        $(elem).addClass('card-hover');
+        var card = getByValueOnTable(elem.id);
+        setArr.push(card);
 
-    if(elements.length>3){
-        alert('НИ')
+        var elements = $('.card-hover');
+
+        if(elements.length==3){
+
+            var formMatch = (setArr[0].form === setArr[1].form && setArr[1].form === setArr[2].form) || (setArr[0].form !== setArr[1].form && setArr[1].form !== setArr[2].form && setArr[0].form !== setArr[2].form);
+            var colorMatch = (setArr[0].color === setArr[1].color && setArr[1].color === setArr[2].color) || (setArr[0].color !== setArr[1].color && setArr[1].color !== setArr[2].color && setArr[0].color !== setArr[2].color);
+            var numberMatch = (setArr[0].number === setArr[1].number && setArr[1].number === setArr[2].number) || (setArr[0].number !== setArr[1].number && setArr[1].number !== setArr[2].number && setArr[0].number !== setArr[2].number);
+            var paintedMatch = (setArr[0].painted === setArr[1].painted && setArr[1].painted === setArr[2].painted) || (setArr[0].painted !== setArr[1].painted && setArr[1].painted !== setArr[2].painted && setArr[0].painted !== setArr[2].painted);
+
+
+            //if(true){
+            if((formMatch == true) && (colorMatch == true) && (numberMatch == true) && (paintedMatch == true) ) {
+                $('.modal-true').show();
+                $('.modal-false').hide();
+
+                $('.card-hover').remove();
+
+                setArr.forEach(function(x) {
+                    deleteFromArr(x,deckArr,1);
+                });
+
+
+                if($('.main-add-3').filter(':parent')) {
+                    var cut = $('.main-add-3').children().detach();
+                    $('.main-12').prepend(cut);
+                }
+                if(deckArr.length<12){
+                    for(var a=0;a<3;a++) {
+                        cardSelect(".main-12");
+                    }
+                }
+
+
+            } else {
+                $('.modal-false').show();
+                $('.modal-true').hide();
+            }
+
+
+            elements.removeClass('card-hover');
+            setArr.splice(0, 3)
+        }
     }
+
 }
 
