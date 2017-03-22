@@ -8,6 +8,7 @@ var numbers = [1,2,3];
 var forms = ['diamond', 'oval', 'worm'];
 var colors = ['red', 'green', 'violet'];
 var paints = ['empty', 'painted', 'strip'];
+var score = 0;
 
 //$(function () {
 
@@ -42,6 +43,7 @@ var paints = ['empty', 'painted', 'strip'];
         for(var a=0;a<3;a++) {
             cardSelect(".main-add-3");
         }
+        $('.card-left').html(packArr.length);
     });
 
 
@@ -90,6 +92,8 @@ function cardSelect(selector) {
     deckArr.push(card);
     packArr.splice(rand,1);
 }
+
+
 function getFocus(elem) {
     if($(elem).hasClass('card-hover')){
         $(elem).removeClass('card-hover');
@@ -111,8 +115,8 @@ function getFocus(elem) {
             var paintedMatch = (setArr[0].painted === setArr[1].painted && setArr[1].painted === setArr[2].painted) || (setArr[0].painted !== setArr[1].painted && setArr[1].painted !== setArr[2].painted && setArr[0].painted !== setArr[2].painted);
 
 
-            //if(true){
-            if((formMatch == true) && (colorMatch == true) && (numberMatch == true) && (paintedMatch == true) ) {
+            if(true){
+            //if((formMatch == true) && (colorMatch == true) && (numberMatch == true) && (paintedMatch == true) ) {
                 $('.modal-true').show();
                 $('.modal-false').hide();
 
@@ -121,6 +125,8 @@ function getFocus(elem) {
                 setArr.forEach(function(x) {
                     deleteFromArr(x,deckArr,1);
                 });
+
+                $('.score').html(++score);
 
 
                 if($('.main-add-3').filter(':parent')) {
@@ -133,15 +139,15 @@ function getFocus(elem) {
                     }
                 }
 
-
             } else {
                 $('.modal-false').show();
                 $('.modal-true').hide();
             }
 
-
             elements.removeClass('card-hover');
-            setArr.splice(0, 3)
+            setArr.splice(0, 3);
+
+            $('.card-left').html(packArr.length);
         }
     }
 

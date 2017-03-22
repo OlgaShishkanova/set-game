@@ -38,7 +38,8 @@ body {
   max-width: 1280px;
   min-height: 100%;
   box-sizing: border-box;
-  background-color: #ffffff; }
+  background-color: #ffffff;
+  position: relative; }
 
 a, a:visited {
   text-decoration: none; }
@@ -191,3 +192,16 @@ img {
 .modal-true {
   background-color: #DFF2BF;
   display: none; }
+
+.info {
+  position: absolute;
+  top: 10%;
+  left: 2%;
+  width: 200px;
+  padding: 20px;
+  border: 1px solid #66aec4;
+  border-radius: 30px; }
+  .info p {
+    margin-bottom: 10px; }
+    .info p:last-child {
+      margin-bottom: 0; }
