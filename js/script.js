@@ -10,7 +10,7 @@ var colors = ['red', 'green', 'violet'];
 var paints = ['empty', 'painted', 'strip'];
 var score = 0;
 
-//$(function () {
+$(function () {
 
 
     var Id = 0;
@@ -39,10 +39,14 @@ var score = 0;
     }
 
     $('.buttons-more').on('click', function () {
+
         if(deckArr.length==15) return;
         for(var a=0;a<3;a++) {
             cardSelect(".main-add-3");
         }
+
+        $( ".buttons-more" ).css('background-color','#c5cccf');
+
         $('.card-left').html(packArr.length);
     });
 
@@ -51,10 +55,41 @@ var score = 0;
         location.reload();
     });
 
+    $(".help-window").each(function() {
+        var modalWidth = $(this).innerWidth() / 2;
+
+        $(this).css({
+            "marginLeft": "-" + modalWidth + "px"
+        });
+
+    });
+
+    $('.button-help').on("click", function (e) {
+        e.preventDefault();
+
+        var currentModal = $(this).attr("href");
+
+        $('.help-window').fadeIn(500);
+        $("body").append("<div class='overlay' id='js-overlay'></div>").addClass("open-modal");
+    });
+
+    $(".close-button").on("click", function (e) {
+        e.preventDefault();
+        $(".help-window").fadeOut(100);
+        $("body").removeClass("open-modal");
+        $("#js-overlay").remove();
+    });
+
+    $("body").on("click","#js-overlay", function () {
+        $(".help-window").fadeOut(100);
+        $("body").removeClass("open-modal");
+        $("#js-overlay").remove();
+    });
+
 
     // var cardDiamond = '<div class="card-item" style="width: 100px; height: 160px; margin: 20px; border: 1px solid #c5cccf; border-radius: 20px; background-color: #ffffff; display: flex;  justify-content: center; align-items: center; flex-direction: column;"> <div class="card-inside" style="background-color: green; width: 30px; height: 30px; transform: rotate(-45deg) skew(20deg, 20deg);"></div></div>';
 
-//});
+});
 function getCard (id, number, myForm, color, paint) {
     var cardItself = {
         form: myForm,
@@ -115,9 +150,16 @@ function getFocus(elem) {
             var paintedMatch = (setArr[0].painted === setArr[1].painted && setArr[1].painted === setArr[2].painted) || (setArr[0].painted !== setArr[1].painted && setArr[1].painted !== setArr[2].painted && setArr[0].painted !== setArr[2].painted);
 
 
-            if(true){
-            //if((formMatch == true) && (colorMatch == true) && (numberMatch == true) && (paintedMatch == true) ) {
+            //if(true){
+            if((formMatch == true) && (colorMatch == true) && (numberMatch == true) && (paintedMatch == true) ) {
+
+
                 $('.modal-true').show();
+
+                setTimeout(function () {
+                    $('.modal-true').hide();
+                }, 3000);
+
                 $('.modal-false').hide();
 
                 $('.card-hover').remove();
@@ -140,13 +182,19 @@ function getFocus(elem) {
                 }
 
             } else {
+
                 $('.modal-false').show();
+
+                setTimeout(function () {
+                    $('.modal-false').hide();
+                }, 3000);
+
                 $('.modal-true').hide();
             }
 
             elements.removeClass('card-hover');
             setArr.splice(0, 3);
-
+            $( ".buttons-more" ).css('background-color','#66aec4');
             $('.card-left').html(packArr.length);
         }
     }

@@ -3,30 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Neucha&amp;subset=cyrillic" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Set</title>
 </head>
 <body>
 <h1 class="name">SET</h1>
-<div class="main flex-between">
-    <div class="main-12 flex-between">
-    </div>
-    <div class="main-add-3 flex-between">
-    </div>
-</div>
-
 <div class="info">
     <p>Осталось кард в колоде: <span class="card-left">69</span></p>
     <p>Счет: <span class="score">0</span></p>
 </div>
 
-<div class="modals modal-true"><p>Верно! Сет убран!</p></div>
-<div class="modals modal-false"><p>Это НЕ сет!</p></div>
+<div class="main flex-between">
+    <div class="main-12 flex-between">
+    </div>
+    <div class="main-add-3 flex-between">
+    </div>
+
+    <input type="button" class="button-help" value="?">
+</div>
+<div class="modal modal-wait"><p>Ожидание хода</p>
+    <div class="modals modal-true"><p>Верно! Сет убран!</p></div>
+    <div class="modals modal-false"><p>Это НЕ сет!</p></div>
+</div>
 
 <div class="buttons">
     <input type="button" class="buttons-more" value="Еще 3 карты">
     <input type="button" class="buttons-find" value="Показать сет">
     <input type="button" class="buttons-new-game" value="Новая игра">
+
+</div>
+
+<div class="help-window">
+    <img src="images/close-button.png" alt="" class="close-button">
+    <h3 class="help-window-headline">ПРАВИЛА</h3>
+    <p>Среди 12 карт, разложенных на столе, необходимо найти сет (набор).</p>
+    <p>Сет состоит из трех карт, у которых каждый из признаков, рассмотренных по отдельности, либо полностью совпадает, либо полностью различается на всех трех картах.</p>
+    <p>Все признаки должны полностью соответствовать этому правилу.</p>
 </div>
 
 <script src="node_modules/jquery/dist/jquery.min.js"></script>

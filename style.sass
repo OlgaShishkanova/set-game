@@ -32,9 +32,10 @@ html
   min-height: 100% /* всегда показываем вертикальную полосу прокрутки  */
 
 body
+  font-family: 'Neucha', cursive
   font-size: 15px
   max-width: 1280px
-  min-height: 100%
+  max-height: 100%
   box-sizing: border-box
   background-color: #ffffff
   position: relative
@@ -104,14 +105,15 @@ img
   color: #66aec4
   font-size: 40px
   font-weight: bold
-  margin: 30px 0
+  margin: 15px 0
 
 .main
   margin: 0 auto
   width: 720px
-  height: 600px
+  height: 520px
   border: 1px solid #66aec4
   border-radius: 30px
+  position: relative
 
 .buttons
   text-align: center
@@ -129,21 +131,23 @@ img
   margin-right: 30px
   cursor: pointer
   transition: all .5s
+  font-family: 'Neucha', cursive
   &:hover
     background-color: #5a97ad
 
 .buttons-find
-  width: 170px
+  width: 166px
   border: 2px solid #c5cccf
   border-radius: 20px
   background-color: transparent
   color: #c5cccf
   text-transform: uppercase
   font-weight: bold
-  padding: 10px 0
+  padding: 8px 0
   margin-right: 30px
   cursor: pointer
   transition: all .5s
+  font-family: 'Neucha', cursive
   &:hover
     border: 2px solid #5a97ad
     color: #5a97ad
@@ -152,19 +156,40 @@ img
   @extend .buttons-more
   margin-right: 0
 
+
+.button-help
+  position: absolute
+  right: 0
+  top: -10%
+  border: 2px solid rgba(197,204,207,0.4)
+  border-radius: 20px
+  background-color: transparent
+  color: rgba(197,204,207,0.4)
+  text-transform: uppercase
+  font-weight: bold
+  padding: 8px 0
+  width: 40px
+  cursor: pointer
+  transition: all .5s
+  font-family: 'Neucha', cursive
+  &:hover
+    border: 2px solid #5a97ad
+    color: #5a97ad
+
+
 .main-12
   width: 80%
 .main-add-3
   width: 20%
 
 .card
-  margin: 20px
+  margin: 10px
   position: relative
   cursor: pointer
 
 .card-img
   width: 100px
-  height: 160px
+  height: 150px
   user-select: none
 
 
@@ -175,16 +200,31 @@ img
   top: 0
   left: 0
   width: 100px
-  height: 160px
+  height: 150px
   background: rgba(197,204,207,0.3)
   cursor: pointer
 
-.modals
+.modal
+  position: relative
   margin: 0 auto
   width: 720px
-  padding: 15px 0
+  padding: 10px 0
   font-size: 18px
   margin-top: 20px
+  border-radius: 10px
+  text-align: center
+  background-color: rgba(197,204,207,0.4)
+  color: #5a97ad
+
+
+.modals
+  position: absolute
+  top: 0
+  left: 0
+  margin: 0 auto
+  width: 720px
+  padding: 10px 0
+  font-size: 18px
   border-radius: 10px
   text-align: center
   color: #5a97ad
@@ -199,13 +239,172 @@ img
 
 .info
   position: absolute
-  top: 10%
+  top: 60px
   left: 2%
   width: 200px
-  padding: 20px
+  padding: 15px 15px
   border: 1px solid #66aec4
   border-radius: 30px
+  color: #66aec4
   & p
     margin-bottom: 10px
     &:last-child
       margin-bottom: 0
+
+.help-window
+  position: absolute
+  top: 30%
+  left: 50%
+  width: 720px
+  height: 50%
+  border: 2px solid #c5cccf
+  padding: 20px
+  color: #66aec4
+  border-radius: 20px
+  background: #ffffff
+  box-sizing: border-box
+  display: none
+  z-index: 1000
+
+.help-window-headline
+  font-size: 20px
+  font-weight: bold
+  text-transform: uppercase
+  color: #66aec4
+  text-align: center
+  margin-bottom: 20px
+
+.close-button
+  position: absolute
+  top: -5%
+  right: -5%
+  width: 30px
+  height: auto
+  cursor: pointer
+
+.overlay
+  width: 100%
+  height: 100%
+  background: rgba(0, 0, 0, .7)
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 999
+
+@media only screen and (max-width: 1024px)
+  .main
+    width: 500px
+    height: 416px
+
+  .help-window
+    width: 500px
+
+  .card
+    margin: 10px
+
+  .card-img
+    width: 70px
+    height: 110px
+
+  .card-hover::after
+    width: 70px
+    height: 110px
+
+  .buttons-more, .buttons-find, .buttons-find
+    width: 150px
+    font-size: 12px
+    margin-right: 10px
+
+  .buttons-new-game
+    margin-right: 0
+
+  .modals
+    width: 500px
+
+  .modal
+    width: 500px
+
+  .info
+    position: static
+    margin: 0 auto
+    margin-bottom: 20px
+
+  .buttons-more
+    transition: all .1s
+    &:hover
+      background-color: #66aec4
+    &:active
+      background-color: #5a97ad
+
+  .buttons-find
+    transition: all .1s
+    &:hover
+      border: 2px solid #c5cccf
+      color: #c5cccf
+    &:active
+      border: 2px solid #5a97ad
+      color: #5a97ad
+
+  .buttons-new-game
+    transition: all .1s
+    &:hover
+      background-color: #66aec4
+    &:active
+      background-color: #5a97ad
+
+@media only screen and (max-width: 500px)
+  .main
+    width: 300px
+    height: 300px
+
+  .help-window
+    top: 3%
+    width: 300px
+    height: 90%
+
+  .close-button
+    top: 5px
+    right: 5px
+
+  .card
+    margin: 5px
+
+  .card-img
+    width: 50px
+    height: 80px
+
+  .card-hover::after
+    width: 50px
+    height: 80px
+    border-radius: 5px
+
+  .buttons-more, .buttons-find, .buttons-find
+    width: 90px
+
+  .modals
+    width: 300px
+    padding: 5px 0
+    font-size: 15px
+
+  .modal
+    width: 300px
+    padding: 5px 0
+    margin-top: 10px
+    font-size: 15px
+
+  .name
+    font-size: 30px
+    margin: 10px 0
+
+  .info
+    margin-bottom: 10px
+    box-sizing: border-box
+    width: 300px
+
+  .buttons
+    margin: 10px 0
+
+  .button-help
+    width: 30px
+    top: -44%
+    padding: 4px 0
