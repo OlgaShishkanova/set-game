@@ -195,7 +195,7 @@ img {
   left: 0;
   width: 100px;
   height: 150px;
-  background: rgba(197, 204, 207, 0.5);
+  background: rgba(197, 204, 207, 0.4);
   cursor: pointer;
   z-index: 3; }
 
@@ -207,7 +207,7 @@ img {
   left: 0;
   width: 100px;
   height: 150px;
-  background: rgba(223, 242, 191, 0.5);
+  background: rgba(223, 242, 191, 0.4);
   cursor: pointer;
   z-index: 2; }
 
@@ -241,6 +241,10 @@ img {
 
 .modal-true {
   background-color: #DFF2BF;
+  display: none; }
+
+.modal-congrat {
+  background-color: #faf79b;
   display: none; }
 
 .info {
@@ -311,6 +315,9 @@ img {
   .card-hover::after {
     width: 70px;
     height: 110px; }
+  .card-hover-right::before {
+    width: 70px;
+    height: 110px; }
   .buttons-more, .buttons-new-game, .buttons-find, .buttons-find {
     width: 150px;
     font-size: 12px;
@@ -363,6 +370,10 @@ img {
     width: 50px;
     height: 80px; }
   .card-hover::after {
+    width: 50px;
+    height: 80px;
+    border-radius: 5px; }
+  .card-hover-right::before {
     width: 50px;
     height: 80px;
     border-radius: 5px; }

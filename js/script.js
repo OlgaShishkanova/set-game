@@ -156,10 +156,12 @@ function deleteFromArr(card, array, number) {
 
 function cardSelect(selector) {
     var rand = Math.floor(Math.random() * packArr.length);
-    $(selector).append(packArr[rand].name);
-    var card = packArr[rand];
-    deckArr.push(card);
-    packArr.splice(rand,1);
+    if(packArr.length > 0) {
+        $(selector).append(packArr[rand].name);
+        var card = packArr[rand];
+        deckArr.push(card);
+        packArr.splice(rand, 1);
+    }
 }
 
 function compare(first, second, third){
@@ -172,6 +174,7 @@ function compare(first, second, third){
 
     return result;
 }
+
 
 function getFocus(elem) {
     if($(elem).hasClass('card-hover')){
@@ -196,6 +199,7 @@ function getFocus(elem) {
 
             //if(true){
             if((formMatch == true) && (colorMatch == true) && (numberMatch == true) && (paintedMatch == true) ) {
+
 
 
                 $('.modal-true').show();
@@ -225,6 +229,8 @@ function getFocus(elem) {
                     }
                 }
 
+
+
             } else {
 
                 $('.modal-false').show();
@@ -240,8 +246,25 @@ function getFocus(elem) {
             setArr.splice(0, 3);
             $( ".buttons-more" ).css('background-color','#66aec4');
             $('.card-left').html(packArr.length);
+
+            if(packArr.length===0) {
+                for (var i = 0; i < deckArr.length; i++) {
+                    var firstCard = deckArr[i];
+                    for (var j = 0; j < deckArr.length; j++) {
+                        var secondCard = deckArr[j];
+                        if (firstCard.id == secondCard.id) continue;
+                        for (var z = 0; z < deckArr.length; z++) {
+                            var thirdCard = deckArr[z];
+                            if (secondCard.id == thirdCard.id || firstCard.id == thirdCard.id) continue;
+                            if ((compare(firstCard, secondCard, thirdCard))) {
+                                return;
+                            }
+                        }
+                    }
+                }
+                $('.modal-congrat').show();
+            }
         }
     }
 
 }
-
