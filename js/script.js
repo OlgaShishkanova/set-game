@@ -87,6 +87,40 @@ $(function () {
     });
 
 
+    $('.buttons-find').on('click',function () {
+
+
+
+
+        for(var i=0;i<deckArr.length;i++) {
+            var firstCard =  deckArr[i];
+            for(var j=0;j<deckArr.length;j++) {
+                var secondCard =  deckArr[j];
+                if(firstCard.id == secondCard.id) continue;
+                for(var z=0;z<deckArr.length;z++) {
+                    var thirdCard =  deckArr[z];
+                    if(secondCard.id == thirdCard.id || firstCard.id == thirdCard.id ) continue;
+                    if(compare(firstCard, secondCard, thirdCard)){
+
+                        $('#' + firstCard.id).addClass('card-hover');
+                        $('#' + secondCard.id).addClass('card-hover');
+                        $('#' + thirdCard.id).addClass('card-hover');
+
+                        setTimeout(function () {
+                        $('#' + firstCard.id).removeClass('card-hover');
+                        $('#' + secondCard.id).removeClass('card-hover');
+                        $('#' + thirdCard.id).removeClass('card-hover');
+
+                        }, 2000);
+                        return;
+                    }
+                }
+            }
+        }
+
+    });
+
+
     // var cardDiamond = '<div class="card-item" style="width: 100px; height: 160px; margin: 20px; border: 1px solid #c5cccf; border-radius: 20px; background-color: #ffffff; display: flex;  justify-content: center; align-items: center; flex-direction: column;"> <div class="card-inside" style="background-color: green; width: 30px; height: 30px; transform: rotate(-45deg) skew(20deg, 20deg);"></div></div>';
 
 });
@@ -128,6 +162,16 @@ function cardSelect(selector) {
     packArr.splice(rand,1);
 }
 
+function compare(first, second, third){
+    var formMatch = (first.form === second.form && second.form === third.form) || (first.form !== second.form && second.form !== third.form && first.form !== third.form);
+    var colorMatch = (first.color === second.color && second.color === third.color) || (first.color !== second.color && second.color !== third.color && first.color !== third.color);
+    var numberMatch = (first.number === second.number && second.number === third.number) || (first.number !== second.number && second.number !== third.number && first.number !== third.number);
+    var paintedMatch = (first.painted === second.painted && second.painted === third.painted) || (first.painted !== second.painted && second.painted !== third.painted && first.painted !== third.painted);
+
+    var result = (formMatch == true) && (colorMatch == true) && (numberMatch == true) && (paintedMatch == true);
+
+    return result;
+}
 
 function getFocus(elem) {
     if($(elem).hasClass('card-hover')){
