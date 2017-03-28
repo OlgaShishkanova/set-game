@@ -195,8 +195,21 @@ img {
   left: 0;
   width: 100px;
   height: 150px;
-  background: rgba(197, 204, 207, 0.3);
-  cursor: pointer; }
+  background: rgba(197, 204, 207, 0.5);
+  cursor: pointer;
+  z-index: 3; }
+
+.card-hover-right::before {
+  content: '';
+  position: absolute;
+  border-radius: 10px;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 150px;
+  background: rgba(223, 242, 191, 0.5);
+  cursor: pointer;
+  z-index: 2; }
 
 .modal {
   position: relative;

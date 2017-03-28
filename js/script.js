@@ -102,14 +102,14 @@ $(function () {
                     if(secondCard.id == thirdCard.id || firstCard.id == thirdCard.id ) continue;
                     if(compare(firstCard, secondCard, thirdCard)){
 
-                        $('#' + firstCard.id).addClass('card-hover');
-                        $('#' + secondCard.id).addClass('card-hover');
-                        $('#' + thirdCard.id).addClass('card-hover');
+                        $('#' + firstCard.id).addClass('card-hover-right');
+                        $('#' + secondCard.id).addClass('card-hover-right');
+                        $('#' + thirdCard.id).addClass('card-hover-right');
 
                         setTimeout(function () {
-                        $('#' + firstCard.id).removeClass('card-hover');
-                        $('#' + secondCard.id).removeClass('card-hover');
-                        $('#' + thirdCard.id).removeClass('card-hover');
+                        $('#' + firstCard.id).removeClass('card-hover-right');
+                        $('#' + secondCard.id).removeClass('card-hover-right');
+                        $('#' + thirdCard.id).removeClass('card-hover-right');
 
                         }, 2000);
                         return;
@@ -231,7 +231,7 @@ function getFocus(elem) {
 
                 setTimeout(function () {
                     $('.modal-false').hide();
-                }, 3000);
+                }, 2000);
 
                 $('.modal-true').hide();
             }
